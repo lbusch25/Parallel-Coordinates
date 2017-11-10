@@ -15,8 +15,10 @@ class Column {
   
   float convertY(float ty) {
     float attRange = attMax - attMin;
-    float dy = (400*ty) / attRange;
-    return y - dy; //Y relative to column size 
+    //float dy = (200*ty) / attRange;
+    //return y - dy; //Y relative to column size 
+    float pos = (ty - attMin) * (400/attRange);
+    return y - pos;
   }
   
   int getX(){

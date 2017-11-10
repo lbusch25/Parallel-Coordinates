@@ -1,3 +1,7 @@
+//Get rid of nodes and edges
+//Make item hold Dict <att name, pos>, this will hold different attribute positions
+//Store columns in arrayList, how things are drawn is based on order of Columns in arrayList
+//click and drag on label
 
 Column columns[];
 Item items[];
@@ -7,10 +11,10 @@ HashMap<Item, ArrayList<Node>> itemNodes = new HashMap<Item, ArrayList<Node>>();
 HashMap<Item, ArrayList<Edge>> itemEdges = new HashMap<Item, ArrayList<Edge>>();
 
 void setup() {
-  size(1000, 600);
+  size(1000, 600, P2D);
   pixelDensity(displayDensity());
   loadData();
-  print(edges.size());
+  //print(edges.size());
 } 
 
 
@@ -19,12 +23,12 @@ void draw() {
     c.draw();
   } for(Item i: itemNodes.keySet()) {
     for(Node n: itemNodes.get(i)) {
-      //n.setPos();
+      n.setPos();
       n.draw();
     } 
-    for(Edge e: edges) {
-      e.draw(); //Asl about fucking null pointer exception
-    }
+    //for(Edge e: edges) {
+    //  e.draw(); //Asl about fucking null pointer exception
+    //}
   }
 }
 
@@ -78,6 +82,13 @@ void loadData() {
     //float acc = row.getFloat("acceleration");
     //float m_year = row.getFloat("model year");
   }
+  
+  //for(Item i: items) {
+  //  ArrayList<Node> val = itemNodes.get(i);
+  //  for(Node n: val) {
+  //    n.setPos();
+  //  }
+  //}
   //edges = new Edge[items.length * columns.length];
   
   edges = new ArrayList<Edge>();
@@ -87,6 +98,7 @@ void loadData() {
     Item ti = items[i];
     ArrayList<Node> tn = itemNodes.get(ti);
     for(int j = 0; j < columns.length - 1; j++) {
+      tn.get(j).setPos();
       Edge e = new Edge(tn.get(j).x, tn.get(j).y, tn.get(j+1).x, tn.get(j+1).y);
       //edges[i+j] = e;
       edges.add(e);
