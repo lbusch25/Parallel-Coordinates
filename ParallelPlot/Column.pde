@@ -12,6 +12,7 @@ class Column {
   int deltaX;
   
   boolean over;
+  boolean highlight;
   
   Column(String attribute) {
     attName = attribute;
@@ -62,12 +63,17 @@ class Column {
     attMin = min;
   }
   
+  void setHighlight() {
+    highlight = !highlight;
+  }
+  
   void setDX(int mx) {
     deltaX = mx - x;
   }
   
   void draw() {
     fill(0);
+    stroke(0);
     if(over) {
       fill(255, 0, 0);
     }
