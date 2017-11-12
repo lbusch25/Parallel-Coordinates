@@ -7,7 +7,7 @@ class Column {
   
   int x, y;
   String attName;
-  int attMax, attMin;
+  float attMax, attMin;
   
   int deltaX;
   
@@ -19,11 +19,10 @@ class Column {
   }
   
   float convertY(float ty) {
-    float attRange = attMax - attMin;
-    //float dy = (200*ty) / attRange;
-    //return y - dy; //Y relative to column size 
-    float pos = floor((ty - attMin)) * floor((400/attRange));
-    return y - pos;
+    //float attRange = attMax - attMin;
+    //float pos = floor((ty - attMin)) * floor((400/attRange)); WHYYYYYYY :(
+    //return y - pos;
+    return map(ty, attMin, attMax, y, y-COLUMN_HEIGHT);
   }
   
   void rollOver(int mx, int my) {
@@ -55,11 +54,11 @@ class Column {
     y = ty;
   }
   
-  void setMax(int max) {
+  void setMax(float max) {
     attMax = max;
   }
   
-  void setMin(int min) {
+  void setMin(float min) {
     attMin = min;
   }
   
@@ -75,12 +74,12 @@ class Column {
     fill(0);
     stroke(0);
     if(over) {
-      fill(255, 0, 0);
+      fill(0, 0, 255);
     }
     line(x + deltaX, y, x + deltaX, y - COLUMN_HEIGHT);
       textAlign(CENTER, CENTER);
       text(attName, x  + deltaX + 5, y - ATT_LABEL_HEIGHT);
-      text(str(attMax), x + deltaX + 5, y - MAX_LABEL_HEIGHT);
-      text(str(attMin), x + deltaX + 5, y + MIN_LABEL_HEIGHT);
+      text(str(ceil(attMax)), x + deltaX + 5, y - MAX_LABEL_HEIGHT);
+      text(str(floor(attMin)), x + deltaX + 5, y + MIN_LABEL_HEIGHT);
   }
 }

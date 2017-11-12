@@ -52,9 +52,9 @@ class TableReader{
       Item item = new Item(row.getString(columnNames[0]));
       for(int j = 1; j < numColumns; j++) {
         if(row.getFloat(j) > columns.get(j-1).attMax) {
-          columns.get(j-1).setMax(int(row.getFloat(j)));
+          columns.get(j-1).setMax(row.getFloat(j)); //cast int
         } if(row.getFloat(j) < columns.get(j-1).attMin) {
-          columns.get(j-1).setMin(int(row.getFloat(j)));
+          columns.get(j-1).setMin(row.getFloat(j)); //cast int
         }
         item.addAttribute(columns.get(j-1).attName, row.getFloat(j));
       }

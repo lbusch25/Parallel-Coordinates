@@ -87,7 +87,7 @@ void mouseReleased() {
         }
     } 
       if (c.over && c.deltaX < -50) {
-        if(i - 1 > 0) {
+        if(i - 1 >= 0) {
           Column s = activeTable.columns.get(i - 1);
           c.setX(s.getPosX());
           c.deltaX = 0;
@@ -115,17 +115,7 @@ void mouseDragged() {
     if(c.over && c.deltaX >= -50 && c.deltaX <= 50) {
       c.setDX(mouseX);
       }
-      
-      //if(c.highlight) {
-      //for(Item item: activeTable.items){
-      //  float val = item.getAttribute(c.attName);
-      //  float yVal = c.convertY(val);
-      //  if((yVal >= startY && yVal <= mouseY) || (yVal <= startY && yVal >= mouseY)) {
-      //    item.setHighlighted();
-      //  }
-      //}
-    }
-//    } 
+    } 
 }
 
 void loadData() {
