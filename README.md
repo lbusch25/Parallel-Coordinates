@@ -3,6 +3,34 @@ An implementation of a parallel coordinates plot visualization using processing.
 
 ###### Project by: Lawson Busch and Matt Bonazzoli
 
+
+## Sketches
+![Project Sketch](/images/Sketches.png)
+Format: ![Alt Text](url)
+
+## Final Implementation
+We decieded to implement a horizontal parallel coordinate plot because we felt it was easier to interpret the various data attributes. Each item is displayed with each of its quantitative vairables assigned to an attribute column. The items were distinguished by their quantitative variables. Even though there are many items for each data set, which creates clutter, this design choice was best to show the overall data attributes for each item. To compensate for the clutter and occlusion of data we implemented filtering. The filtering is distinguished with a change in hue for the selected items as well as a decrease in saturation for the unselected items to make the highlighted items very apparent. We also allow the user to click and drag the column order to see different patterns in the data. Initially we only chose to have the change in hue for the highlighted items, but upon initial implementation there was still too much clutter so we decided to add teh desaturation factor. We also decided to implemented a toggle so that only the highlighted items are shown on the plot in order to reduce the screen clutter. For the column changing, we stuck with our initial design desicion to change the hue of the column as the column is manipulated. We were able to include everything we initially invisioned for the visualization and were able to add more as we did not feel our initial decisions allowed the visualization to be effective.
+
+#### Initial Parallel-Coordinate Plot
+![Initial Visual;ization](/images/ParallelPlotsSnippet1.png)
+Format: ![Alt Text](url)
+
+#### Data Filtering
+![Initial Visual;ization](/images/ParallelPlotsSnippet2.png)
+Format: ![Alt Text](url)
+
+#### Data Filtering With Toggle
+![Initial Visual;ization](/images/ParallelPlotsSnippet3.png)
+Format: ![Alt Text](url)
+
+#### Column Selection
+![Initial Visual;ization](/images/ParallelPlotsSnippet4a.png)
+Format: ![Alt Text](url)
+
+#### Column Position Change
+![Initial Visual;ization](/images/ParallelPlotsSnippet4b.png)
+Format: ![Alt Text](url)
+
 ## Interactivity
 
 Our parallel coordinates plot supports several different types of interactivity. The first is the ability to **filter by select colomn attributes**. Initially, the user sees all data displayed across the parallel coordinates, but the user can select data from a column by clicking over the column and dragging to over the data points that they want to highlight. When the mouse click is released, selected data will be highlighted with a blue line, and non selected data will be desaturated to make it fall into the background. We chose blue because it provided a significant popout effect, while also not being such a strong contrast that it is hard for the user to view non-highlighted data. This allows the viewer to easily see the contrast between the highlighted data and the non-highlighted data. If the user wants to see the highlighted data by itself, they can press the space bar, which toggles the view between displaying non-highlighted data and highlighted data to only highlighted data points. 
