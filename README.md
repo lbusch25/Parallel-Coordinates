@@ -6,6 +6,7 @@ An implementation of a parallel coordinates plot visualization using processing.
 
 ## Sketches For Project
 ![Project Sketch](/images/Sketches.PNG)
+![Project Sketch 2](/images/Sketches2.PNG)
 
 
 ## Final Implementation
