@@ -1,7 +1,4 @@
-//Get rid of nodes and edges
-//Make item hold Dict <att name, pos>, this will hold different attribute positions
-//Store columns in arrayList, how things are drawn is based on order of Columns in arrayList
-//click and drag on label
+
 TableReader activeTable;
 TableReader carData;
 TableReader cameraData;

@@ -3,6 +3,8 @@
   TableReader Class 11/7/2017
     **reads data table input and stores in column array and item array (for row information)
 */
+
+
 class TableReader{
   Table dataTable;
   public Item[] items;

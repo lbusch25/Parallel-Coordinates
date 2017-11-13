@@ -74,7 +74,7 @@ class Column {
     fill(0);
     stroke(0);
     if(over) {
-      fill(0, 0, 255);
+      fill(255, 0, 0);
     }
     line(x + deltaX, y, x + deltaX, y - COLUMN_HEIGHT);
       textAlign(CENTER, CENTER);
