@@ -9,6 +9,9 @@ TableReader foodData;
 
 int startX, startY;
 
+boolean showAll;
+boolean columnIsHighlighted;
+
 //ArrayList<Column> columns;
 Item items[];
 
@@ -17,31 +20,33 @@ void setup() {
   pixelDensity(displayDensity());
   loadData();
   print(activeTable.columns.size());
+  
+  showAll = true;
 } 
 
 
 void draw() {
   background(255);
   for(Column c: activeTable.columns) {
-    //if(c.highlight == true) {
-    //  print(c.highlight);
-    //}
     c.draw();
   } 
-  for(int i =1; i < activeTable.items.length - 1; i++){
+  for(int i = 0; i < activeTable.items.length - 1; i++){
     for(int j = 0; j < activeTable.columns.size() - 1; j++) {
       Column c1 = activeTable.columns.get(j);
       Column c2 = activeTable.columns.get(j+1);
       float p1 = c1.convertY(activeTable.items[i].getAttribute(c1.attName));
       float p2 = c2.convertY(activeTable.items[i].getAttribute(c2.attName));
-      //print(activeTable.items[i].highlighted);
       if(activeTable.items[i].highlighted) {
-        stroke(255, 0, 0);
+        stroke(0, 0, 175, 255);
         strokeWeight(0.5);
         line(c1.getPosX(), p1, c2.getPosX(), p2);
       } 
-      else {
-        stroke(0);
+      else if (showAll) {
+        if(columnIsHighlighted) {
+          stroke(0, 0, 0, 25);
+        } else {
+          stroke(0);
+        }
         strokeWeight(0.5);
         line(c1.getPosX(), p1, c2.getPosX(), p2);
       }
@@ -56,6 +61,7 @@ void mouseMoved() {
 }
 
 void mousePressed() {
+  columnIsHighlighted = false;
   startX = mouseX;
   startY = mouseY;
   for(Column c: activeTable.columns) {
@@ -69,6 +75,7 @@ void mousePressed() {
     }
     if (startX >= c.getPosX() - 25 && startX <= c.getPosX() + 25) {
       c.setHighlight();
+      //columnIsHighlighted = true;
     }
   }
 }
@@ -98,13 +105,14 @@ void mouseReleased() {
      }
      
       if(c.highlight) {
-      for(Item item: activeTable.items){
-        float val = item.getAttribute(c.attName);
-        float yVal = c.convertY(val);
-        if((yVal >= startY && yVal <= mouseY) || (yVal <= startY && yVal >= mouseY)) {
-          item.setHighlighted();
+        columnIsHighlighted = true;
+        for(Item item: activeTable.items){
+          float val = item.getAttribute(c.attName);
+          float yVal = c.convertY(val);
+          if((yVal >= startY && yVal <= mouseY) || (yVal <= startY && yVal >= mouseY)) {
+            item.setHighlighted();
+          }
         }
-      }
     }
   }
 }
@@ -118,11 +126,23 @@ void mouseDragged() {
     } 
 }
 
+void keyPressed() {
+  if(key == ' ') {
+    showAll = !showAll;
+  } if (key == 'a') {
+    activeTable = carData;
+  } if(key == 'c') {
+    activeTable = cameraData;
+  } if(key == 'f') {
+    activeTable = foodData; //Not fully read in properly
+  }
+}
+
 void loadData() {
   
-  carData = new TableReader("cars-cleaned.tsv");
-  cameraData = new TableReader("cameras-cleaned.tsv");
-  foodData = new TableReader("nutrients-cleaned.tsv");
+  carData = new TableReader("cars-cleaned.tsv"); //Works
+  cameraData = new TableReader("cameras-cleaned.tsv"); //Works
+  foodData = new TableReader("nutrients-cleaned.tsv"); //Not fully working for foodData
   
   activeTable = carData;
 }
