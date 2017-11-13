@@ -105,12 +105,12 @@ void mouseReleased() {
      }
      
       if(c.highlight) {
-        columnIsHighlighted = true;
         for(Item item: activeTable.items){
           float val = item.getAttribute(c.attName);
           float yVal = c.convertY(val);
           if((yVal >= startY && yVal <= mouseY) || (yVal <= startY && yVal >= mouseY)) {
             item.setHighlighted();
+            columnIsHighlighted = true;
           }
         }
     }
