@@ -77,6 +77,7 @@ class Column {
       fill(255, 0, 0);
     }
     line(x + deltaX, y, x + deltaX, y - COLUMN_HEIGHT);
+      textFont(font, 16); //Using the font from ParallelPlot.pde
       textAlign(CENTER, CENTER);
       text(attName, x  + deltaX + 5, y - ATT_LABEL_HEIGHT);
       text(str(ceil(attMax)), x + deltaX + 5, y - MAX_LABEL_HEIGHT);

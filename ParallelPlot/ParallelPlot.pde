@@ -1,4 +1,4 @@
-
+PFont font;
 TableReader activeTable;
 TableReader carData;
 TableReader cameraData;
@@ -9,15 +9,13 @@ int startX, startY;
 boolean showAll;
 boolean columnIsHighlighted;
 
-//ArrayList<Column> columns;
 Item items[];
 
 void setup() {
   size(1200, 600, P2D); //Need P2D in here cause its so much faster, but font messed up
   pixelDensity(displayDensity());
   loadData();
-  print(activeTable.columns.size());
-  
+  font = createFont("Arial", 16);
   showAll = true;
 } 
 
@@ -128,10 +126,13 @@ void keyPressed() {
     showAll = !showAll;
   } if (key == 'a') {
     activeTable = carData;
+    columnIsHighlighted = false;
   } if(key == 'c') {
     activeTable = cameraData;
+    columnIsHighlighted = false;
   } if(key == 'f') {
     activeTable = foodData; //Not fully read in properly
+    columnIsHighlighted = false;
   }
 }
 
