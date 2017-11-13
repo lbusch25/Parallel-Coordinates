@@ -16,7 +16,7 @@ boolean columnIsHighlighted;
 Item items[];
 
 void setup() {
-  size(1200, 600);
+  size(1200, 600, P2D); //Need P2D in here cause its so much faster, but font messed up
   pixelDensity(displayDensity());
   loadData();
   print(activeTable.columns.size());
